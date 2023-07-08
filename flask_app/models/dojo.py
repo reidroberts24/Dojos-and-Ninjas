@@ -4,23 +4,21 @@ from flask_app.models.ninja import Ninja
 class Dojo:
     def __init__(self, data):
         self.id = data['id']
-        self.first_name = data['first_name']
-        self.last_name = data['last_name']
+        self.name = data['name']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.ninjas = []
 
-    ################# UPDATE NINJAS #################
-    @classmethod
-    def get_ninjas(cls, data):
+    ################# UPDATE NINJAS (instance method) #################
+    def get_ninjas(self, data):
         query = '''SELECT * FROM ninjas
                 WHERE ninjas.dojo_id = %(id)s;
                 '''
         ninjas_from_db = connectToMySQL('dojos_and_ninjas').query_db(query, data)
-        for ninja_data in ninjas_from_db
+        for ninja_data in ninjas_from_db:
             ninja = Ninja(ninja_data)
-            cls.ninjas.append(ninja)
-        return cls.ninjas
+            self.ninjas.append(ninja)
+        return self.ninjas
 
 
     ################# SAVE NEW DOJO #################
@@ -36,7 +34,7 @@ class Dojo:
         query = 'SELECT * FROM dojos;'
         dojos_from_db = connectToMySQL('dojos_and_ninjas').query_db(query)
         dojos = []
-        for dojo in dojos_from_db
+        for dojo in dojos_from_db:
             dojos.append(cls(dojo))
         return dojos
     

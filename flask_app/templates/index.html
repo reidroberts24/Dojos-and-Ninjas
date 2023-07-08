@@ -11,7 +11,7 @@
 <body>
     <div class="container-fluid d-flex flex-row align-items-start justify-content-center">
         <div class="flex-grow-1">
-            <form action="/create" method="post" class="p-3 col-6 mx-auto my-5 bg-dark text-light">
+            <form action="add/dojo" method="post" class="p-3 col-6 mx-auto my-5 bg-dark text-light">
                 <h2 class="text-center text-primary">Add New Dojo:</h2>
                 <div class="form-group">
                     <label for="dojo_name">Dojo Name:</label>
@@ -28,9 +28,9 @@
             </button>
             {% for dojo in dojos %}
                 <form action="#" method="post">
-                    <input type="hidden" name="dojo_id" value="{{dojo_id}}">
+                    <input type="hidden" name="dojo_id" value="{{dojo.name}}">
                     <button type="submit" name="dojo_name" class="list-group-item list-group-item-action w-50 bg-dark text-light">
-                        {{dojo_name}}
+                        {{dojo.name}}
                     </button>
                 </form>
             {% endfor %}

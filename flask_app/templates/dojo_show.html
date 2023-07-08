@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
-    <title>Dojos and Ninjas</title>
+    <title>Show Dojo</title>
 </head>
 <body>
     <div class="container-fluid d-flex flex-row align-items-start justify-content-center">
@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 mx-auto text-center">
-                    <h2 class="display-4">{{dojo_location}} Ninjas:</h2>
+                    <h2 class="display-4">{{dojo.name}} Ninjas:</h2>
                 </div>
             </div>
             <div class="row">
@@ -33,9 +33,11 @@
                         </thead>
                         <tbody>
                             {% for ninja in ninjas %}
-                                <td>{{first_name}}</td>
-                                <td>{{last_name}}</td>
-                                <td>{{age}}</td>
+                                <tr>
+                                    <td>{{ninja.first_name}}</td>
+                                    <td>{{ninja.last_name}}</td>
+                                    <td>{{ninja.age}}</td>
+                                </tr>
                             {% endfor %}
                         </tbody>
                     </table>

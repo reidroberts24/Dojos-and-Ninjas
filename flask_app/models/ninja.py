@@ -1,6 +1,4 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.dojo import Dojo
-
 
 class Ninja:
     def __init__(self, data):
@@ -17,42 +15,43 @@ class Ninja:
     ################# SAVE NEW NINJA #################
     @classmethod
     def save(cls, data):
-        query = '''INSERT INTO dojos (name, created_at, updated_at)
-            VALUES (%(name)s, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());'''
+        query = '''INSERT INTO dojos (first_name, last_name, age, created_at, updated_at, dojo_id)
+            VALUES (%(first_name)s, %(last_name)s, %(age)s, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), %(dojo_id)s,);'''
         return connectToMySQL('dojos_and_ninjas').query_db(query, data)
     
     ################# RETURN LIST OF NINJA #################
     @classmethod
     def get_all(cls):
-        query = 'SELECT * FROM dojos;'
-        dojos_from_db = connectToMySQL('dojos_and_ninjas').query_db(query)
-        dojos = []
-        for dojo in dojos_from_db
-            dojos.append(cls(dojo))
-        return dojos
+        query = 'SELECT * FROM ninjas;'
+        ninjas_from_db = connectToMySQL('dojos_and_ninjas').query_db(query)
+        ninjas = []
+        for ninja in ninjas_from_db:
+            ninjas.append(cls(ninja))
+        return ninjas
     
     ################# RETURN SINGLE NINJA #################
     @classmethod
     def get_one(cls, data):
-        query = 'SELECT * FROM dojos WHERE dojos.id = %(id)s;'
-        dojo_from_db = connectToMySQL('dojos_and_ninjas').query_db(query, data)
-        return cls(dojo_from_db[0])
+        query = 'SELECT * FROM ninjas WHERE ninjas.id = %(id)s;'
+        ninja_from_db = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+        return cls(ninja_from_db[0])
     
     ################# UPDATE NINJA #################
     @classmethod
     def update(cls, data):
-        query = '''UPDATE dojos SET 
-                name = %(name)s,
+        query = '''UPDATE ninjas SET 
+                first_name = %(first_name)s,
+                last_name = %(last_name)s,
+                age = %(age)s,
+                dojo_id = %(dojo_id)s,
                 updated_at = CURRENT_TIMESTAMP()
-                WHERE dojos.id = %(id)s;
+                WHERE ninjas.id = %(id)s;
                 '''
         return connectToMySQL('dojos_and_ninjas').query_db(query, data)
 
     ################# DELETE NINJA #################
     @classmethod
-    def delete_dojo(cls, data):
-        query = 'DELETE FROM dojos WHERE dojos.id = %(id)s;'
+    def delete_ninja(cls, data):
+        query = 'DELETE FROM ninjas WHERE ninjas.id = %(id)s;'
         return connectToMySQL('dojos_and_ninjas').query_db(query, data)
 
-    
-        
