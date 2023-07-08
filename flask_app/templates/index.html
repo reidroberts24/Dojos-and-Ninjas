@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Dojos and Ninjas</title>
+</head>
+<body>
+    <div class="container-fluid d-flex flex-row align-items-start justify-content-center">
+        <div class="flex-grow-1">
+            <form action="/create" method="post" class="p-3 col-6 mx-auto my-5 bg-dark text-light">
+                <h2 class="text-center text-primary">Add New Dojo:</h2>
+                <div class="form-group">
+                    <label for="dojo_name">Dojo Name:</label>
+                    <input type="text" name="dojo_name" id="dojo_name" class="form-control">
+                </div>
+                <input type="submit" value="Add Dojo" class="btn btn-primary btn-outline-dark">
+                <a href="#" value="Add Ninja Instead" class="btn btn-primary btn-outline-dark float-right">Add New Ninja</a>
+
+            </form>
+        </div>
+        <div class="list-group flex-grow-1 my-5">
+            <button type="button" class="list-group-item list-group-item-action active w-50 bg-dark text-light">
+                All Dojos
+            </button>
+            {% for dojo in dojos %}
+            <button type="button" class="list-group-item list-group-item-action w-50 bg-dark text-light">{{dojo}}</button>
+            {% endfor %}
+        </div>
+    </div>
+    
+</body>
+</html>
+
