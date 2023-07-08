@@ -27,7 +27,12 @@
                 All Dojos
             </button>
             {% for dojo in dojos %}
-            <button type="button" class="list-group-item list-group-item-action w-50 bg-dark text-light">{{dojo}}</button>
+                <form action="#" method="post">
+                    <input type="hidden" name="dojo_id" value="{{dojo_id}}">
+                    <button type="submit" name="dojo_name" class="list-group-item list-group-item-action w-50 bg-dark text-light">
+                        {{dojo_name}}
+                    </button>
+                </form>
             {% endfor %}
         </div>
     </div>
