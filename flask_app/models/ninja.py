@@ -31,9 +31,9 @@ class Ninja:
     
     ################# RETURN SINGLE NINJA #################
     @classmethod
-    def get_one(cls, data):
+    def get_one(cls, ninja_id):
         query = 'SELECT * FROM ninjas WHERE ninjas.id = %(id)s;'
-        ninja_from_db = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+        ninja_from_db = connectToMySQL('dojos_and_ninjas').query_db(query, {'id': ninja_id})
         return cls(ninja_from_db[0])
     
     ################# UPDATE NINJA #################
@@ -51,7 +51,7 @@ class Ninja:
 
     ################# DELETE NINJA #################
     @classmethod
-    def delete_ninja(cls, data):
+    def delete_ninja(cls, ninja_id):
         query = 'DELETE FROM ninjas WHERE ninjas.id = %(id)s;'
-        return connectToMySQL('dojos_and_ninjas').query_db(query, data)
+        return connectToMySQL('dojos_and_ninjas').query_db(query, {'id': ninja_id})
 
