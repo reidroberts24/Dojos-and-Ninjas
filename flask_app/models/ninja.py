@@ -15,15 +15,15 @@ class Ninja:
     ################# SAVE NEW NINJA #################
     @classmethod
     def save(cls, data):
-        query = '''INSERT INTO dojos (first_name, last_name, age, created_at, updated_at, dojo_id)
-            VALUES (%(first_name)s, %(last_name)s, %(age)s, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), %(dojo_id)s,);'''
+        query = '''INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+            VALUES (%(first_name)s, %(last_name)s, %(age)s, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), %(dojo_id)s);'''
         return connectToMySQL('dojos_and_ninjas').query_db(query, data)
     
     ################# RETURN LIST OF NINJA #################
     @classmethod
-    def get_all(cls):
+    def get_all(cls, data):
         query = 'SELECT * FROM ninjas;'
-        ninjas_from_db = connectToMySQL('dojos_and_ninjas').query_db(query)
+        ninjas_from_db = connectToMySQL('dojos_and_ninjas').query_db(query, data)
         ninjas = []
         for ninja in ninjas_from_db:
             ninjas.append(cls(ninja))
