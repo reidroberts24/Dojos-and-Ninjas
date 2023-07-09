@@ -24,6 +24,7 @@ def dojo_show(dojo_id):
     ninjas = Ninja.get_all({'dojo_id' : dojo_id})
     return render_template('dojo_show.html', dojo=dojo, ninjas=ninjas)
 
+
 ######################## UPDATE DOJO ########################
 
 
