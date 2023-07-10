@@ -28,7 +28,7 @@ class Ninja:
         for ninja in ninjas_from_db:
             ninjas.append(cls(ninja))
         return ninjas
-    
+
     ################# RETURN SINGLE NINJA #################
     @classmethod
     def get_one(cls, ninja_id):

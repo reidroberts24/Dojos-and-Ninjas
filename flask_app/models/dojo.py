@@ -44,7 +44,7 @@ class Dojo:
         query = 'SELECT * FROM dojos WHERE dojos.id = %(id)s;'
         dojo_from_db = connectToMySQL('dojos_and_ninjas').query_db(query, data)
         return cls(dojo_from_db[0])
-    
+        
     ################# UPDATE DOJO #################
     @classmethod
     def update(cls, data):
